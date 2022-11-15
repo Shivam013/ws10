@@ -1,0 +1,32 @@
+Script started on 2022-11-15 01:33:54-05:00
+
+USED WinSCP TO GET PYTHON FILE INTO /mnt/scratch/shivam
+
+shivam@sjsu:/mnt/scratch/shivam/ws10[shivam@sjsu ws10]$ history -c
+shivam@sjsu:/mnt/scratch/shivam/ws10[shivam@sjsu ws10]$ vi numbers.sh 
+
+"numbers.sh" [New File] 
+-- INSERT -- 
+
+tail -n +2 amazon_reviews_us_Books_v1_02.tsv  | awk -F "\t" '{if(min==""){min=max=$9}; if($9>max) {max=$9}; if($9<min) {min=$9}; total+=$9; count+=1} END {print "min", min, "max", max, "avg", total/count}'
+
+ -- INSERT -- 
+"numbers.sh" [New] 1L, 206C written
+
+shivam@sjsu:/mnt/scratch/shivam/ws10[shivam@sjsu ws10]$ chmod 777 numbers.sh 
+shivam@sjsu:/mnt/scratch/shivam/ws10[shivam@sjsu ws10]$ time python3 numbers.py 
+min 0 max 6539 avg 9.414136172618408
+
+real    0m12.408s
+user    0m11.957s
+sys     0m0.450s
+
+shivam@sjsu:/mnt/scratch/shivam/ws10[shivam@sjsu ws10]$ time ./numbers.sh
+min 0 max 6539 avg 9.41414
+
+real    0m13.000s
+user    0m13.213s
+sys     0m1.079s
+
+
+The Python script runs faster than my shell script.

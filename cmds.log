@@ -1,0 +1,4 @@
+1    vi numbers.sh
+2    chmod 777 numbers.sh
+3    time python3 numbers.py
+4    time ./numbers.sh
